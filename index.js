@@ -23,6 +23,11 @@ app.get('/redirectChatOperator', (req, res) => {
   res.redirect('http://example.com/chat-operator');
 });
 
+// Endpoint 5: 
+app.get('/privacy', (req, res) => {
+  res.send('privacy policy: we don\'t save any user data');
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
