@@ -1,6 +1,11 @@
 const express = require('express');
+const crypto = require("crypto");
 const app = express();
 const port = 3000;
+const CyclicDb = require("@cyclic.sh/dynamodb")
+const db = CyclicDb("average-tick-flannel-nightgownCyclicDB")
+
+const appointments = db.collection("appointments")
 
 // Endpoint 1: Return order status
 app.get('/order/:id/status', (req, res) => {
@@ -15,7 +20,9 @@ app.get('/order/:id/status', (req, res) => {
 // Endpoint 1: Return order status
 app.post('/booking/new', (req, res) => {
   const booking = req.body;
-  res.send('OK');
+  const id = crypto.randomBytes(16).toString("hex");
+  let appointment = appointments.set(id, req.body)
+  res.json(appointment);
 });
 
 // Endpoint 2: Return warranty status (randomly true or false)
