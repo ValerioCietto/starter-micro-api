@@ -4,7 +4,7 @@ const app = express();
 const port = 3000;
 const CyclicDb = require("@cyclic.sh/dynamodb")
 const db = CyclicDb("average-tick-flannel-nightgownCyclicDB")
-
+app.use(express.json());
 const appointments = db.collection("appointments")
 
 // Endpoint 1: Return order status
@@ -17,11 +17,10 @@ app.get('/order/:id/status', (req, res) => {
   });
 });
 
-// Endpoint 1: Return order status
-app.post('/booking/new', (req, res) => {
+app.post('/booking/new', async (req, res) => {
   const booking = req.body;
   const id = crypto.randomBytes(16).toString("hex");
-  let appointment = await appointments.set(id, req.body)
+  let appointment = await appointments.set(id, booking);
   res.json(appointment);
 });
 
