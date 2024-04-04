@@ -12,6 +12,12 @@ app.get('/order/:id/status', (req, res) => {
   });
 });
 
+// Endpoint 1: Return order status
+app.post('/booking/new', (req, res) => {
+  const booking = req.body;
+  res.send('OK');
+});
+
 // Endpoint 2: Return warranty status (randomly true or false)
 app.get('/order/:id/warranty', (req, res) => {
   const warrantyValid = Math.random() < 0.5; // 50% chance
