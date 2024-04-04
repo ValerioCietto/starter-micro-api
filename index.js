@@ -21,7 +21,7 @@ app.get('/order/:id/status', (req, res) => {
 app.post('/booking/new', (req, res) => {
   const booking = req.body;
   const id = crypto.randomBytes(16).toString("hex");
-  let appointment = appointments.set(id, req.body)
+  let appointment = await appointments.set(id, req.body)
   res.json(appointment);
 });
 
