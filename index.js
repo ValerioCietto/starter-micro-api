@@ -23,6 +23,17 @@ app.post('/booking/new', async (req, res) => {
   let appointment = await appointments.set(id, booking);
   res.json(appointment);
 });
+// {
+//     "collection": "appointments",
+//     "key": "e12495c4ef4b162a2279feca62037ecb",
+//     "props": {
+//         "nominativo": "don diego de la vega",
+//         "data": "23-05-2025",
+//         "ora": "12:03:00",
+//         "motivo-visita": "tatuaggio alla spalla sinistra di un drago",
+//         "sintesi-richiesta": "tatuaggio spalla drago"
+//     }
+// }
 
 // Endpoint 2: Return warranty status (randomly true or false)
 app.get('/order/:id/warranty', (req, res) => {
